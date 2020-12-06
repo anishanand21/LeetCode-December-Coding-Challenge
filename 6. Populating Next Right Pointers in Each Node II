@@ -1,0 +1,23 @@
+class Solution {
+    queue<Node *> q;
+public:
+    Node* connect(Node* root) {
+        if(root) {
+            q.push(root);
+            while(not q.empty()) {
+                int len = q.size();
+                Node *prev = nullptr;
+                for(int i=0; i<len; i++) {
+                    Node *n = q.front();
+                    q.pop();
+                    if(not n)   continue;
+                    prev ? (prev->next = n) : nullptr;
+                    prev = n;
+                    q.push(prev->left);
+                    q.push(prev->right);
+                }
+            }
+        }
+        return root;
+    }
+};
